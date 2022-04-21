@@ -13,6 +13,7 @@ namespace KatasTest.LeapYearTest
 
         [TestCase(true, 2400)]
         [TestCase(true, 2000)]
+        [TestCase(true, 1600)]
         public void WhenSendYearDivisibleBy400IsLeapYear(bool expected, int yearToProcess)
         {
             Assert.AreEqual(true, LeapYear.LeapYearProcess(yearToProcess), $"When pass { yearToProcess } Expected { expected }");
