@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using KatasApp.Services;
 
-namespace FizzBuzzTest;
+namespace KatasTest.FizzBuzzTest;
 
 public class FizzBuzzTests
 {

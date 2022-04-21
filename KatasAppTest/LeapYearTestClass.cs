@@ -2,7 +2,7 @@
 using NUnit.Framework;
 
 
-namespace KatasTest
+namespace KatasTest.LeapYearTest
 {
     public class LeapYearTestClass
     {
