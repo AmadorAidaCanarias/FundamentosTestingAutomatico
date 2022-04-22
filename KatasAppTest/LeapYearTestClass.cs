@@ -26,5 +26,13 @@ namespace KatasTest.LeapYearTest
         {
             Assert.AreEqual(expected, LeapYear.LeapYearProcess(yearToProcess), $"When pass { yearToProcess } Expected { expected }");
         }
+
+        [TestCase(true, 2004)]
+        [TestCase(true, 2024)]
+        [TestCase(true, 2012)]
+        public void WhenSendYearDivisibleBy4ButNotBy100IsLeapYear(bool expected, int yearToProcess)
+        {
+            Assert.AreEqual(expected, LeapYear.LeapYearProcess(yearToProcess), $"When pass { yearToProcess } Expected { expected }");
+        }
     }
 }
