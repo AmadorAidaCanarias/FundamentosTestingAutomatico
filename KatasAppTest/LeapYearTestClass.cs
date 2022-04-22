@@ -20,6 +20,8 @@ namespace KatasTest.LeapYearTest
         }
 
         [TestCase(false, 2300)]
+        [TestCase(false, 2100)]
+        [TestCase(false, 1900)]
         public void WhenSendYearDivisibleBy100ButNotBy400NotIsLeapYear(bool expected, int yearToProcess)
         {
             Assert.AreEqual(expected, LeapYear.LeapYearProcess(yearToProcess), $"When pass { yearToProcess } Expected { expected }");
