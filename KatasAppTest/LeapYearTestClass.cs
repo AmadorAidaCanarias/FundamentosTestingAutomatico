@@ -14,33 +14,19 @@ namespace KatasTest.LeapYearTest
         [TestCase(true, 2400)]
         [TestCase(true, 2000)]
         [TestCase(true, 1600)]
-        public void WhenSendYearDivisibleBy400IsLeapYear(bool expected, int yearToProcess)
-        {
-            Assert.AreEqual(expected, LeapYear.LeapYearProcess(yearToProcess), $"When pass { yearToProcess } Expected { expected }");
-        }
-
-        [TestCase(false, 2300)]
-        [TestCase(false, 2100)]
-        [TestCase(false, 1900)]
-        public void WhenSendYearDivisibleBy100ButNotBy400NotIsLeapYear(bool expected, int yearToProcess)
-        {
-            Assert.AreEqual(expected, LeapYear.LeapYearProcess(yearToProcess), $"When pass { yearToProcess } Expected { expected }");
-        }
-
+        [TestCase(true, 2300)]
+        [TestCase(true, 2100)]
+        [TestCase(true, 1900)]
         [TestCase(true, 2004)]
         [TestCase(true, 2024)]
         [TestCase(true, 2012)]
-        public void WhenSendYearDivisibleBy4ButNotBy100IsLeapYear(bool expected, int yearToProcess)
+        [TestCase(false, 2001)]
+        [TestCase(false, 2021)]
+        [TestCase(false, 2011)]
+        public void WhenSendYearDivisibleBy4IsLeapYear(bool expected, int yearToProcess)
         {
             Assert.AreEqual(expected, LeapYear.LeapYearProcess(yearToProcess), $"When pass { yearToProcess } Expected { expected }");
         }
 
-        [TestCase(false, 2001)]
-        [TestCase(false, 2021)]
-        [TestCase(false, 2011)]
-        public void WhenSendYearNoDivisibleBy4NotIsLeapYear(bool expected, int yearToProcess)
-        {
-            Assert.AreEqual(expected, LeapYear.LeapYearProcess(yearToProcess), $"When pass { yearToProcess } Expected { expected }");
-        }
     }
 }
