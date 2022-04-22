@@ -10,15 +10,14 @@ namespace KatasApp.Services
     {
         public static bool LeapYearProcess(int yearToProcess)
         {
-            if ((yearToProcess == 2012) || (yearToProcess == 2004) || (yearToProcess == 2024))
-                return false;
+            bool isLeapYear = false;
+            if (yearToProcess % 4 == 0)
+                isLeapYear = true;
             if ((yearToProcess % 100 == 0) && (yearToProcess % 400 != 0))
-                return false;
+                isLeapYear = false;
             if (yearToProcess % 400 == 0)
-            { 
-                return true;
-            }
-            return false;
+                isLeapYear = true;
+            return isLeapYear;
         }
     }
 }
