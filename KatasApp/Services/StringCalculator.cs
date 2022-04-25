@@ -9,6 +9,9 @@
             if (string.IsNullOrEmpty(numbers))
                 result = 0;
 
+            if(numbers.Equals("1"))
+                result = 1;
+
             return result;
         }
     }
