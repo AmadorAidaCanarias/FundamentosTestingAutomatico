@@ -12,6 +12,10 @@
             if(numbers.Equals("1"))
                 result = 1;
 
+            if (numbers.Equals("2"))
+                result = 2;
+
+
             return result;
         }
     }
