@@ -9,7 +9,7 @@ using FluentAssertions;
 
 namespace KatasTest.StringCalculatorTest
 {
-    public class StringCalculatorTest
+    public class StringCalculatorTestShould
     {
         [SetUp]
         public void Setup()
@@ -17,11 +17,19 @@ namespace KatasTest.StringCalculatorTest
         }
 
         [Test]
-        public void WhenPassEmptyStringThenReturn0()
+        public void return_0_when_pass_empty_string()
         {
             int resultStringCalculator = StringCalculator.Add("");
 
             resultStringCalculator.Should().Be(0, "When Pass Empty String Then Return 0.");
+        }
+
+        [Test]
+        public void return_1_when_pass_1_string()
+        {
+            int resultStringCalculator = StringCalculator.Add("1");
+
+            resultStringCalculator.Should().Be(1, "when Pass 1 Then Return 1.");
         }
     }
 }
