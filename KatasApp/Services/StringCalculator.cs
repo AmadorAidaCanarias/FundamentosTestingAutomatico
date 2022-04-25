@@ -6,6 +6,9 @@
         {
             int.TryParse(numbers, out int result);
 
+            if (numbers.Contains("\n"))
+                numbers = numbers.Replace("\n", ",");
+
             if (numbers.Contains(","))
             {
                 int.TryParse(numbers.Split(",").First(), out int firstNumber);
