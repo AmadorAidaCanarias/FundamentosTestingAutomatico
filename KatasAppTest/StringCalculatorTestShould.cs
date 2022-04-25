@@ -33,5 +33,13 @@ namespace KatasTest.StringCalculatorTest
 
             resultStringCalculator.Should().Be(expected, $"When Pass { expected } String Then Return { value }.");
         }
+
+        [Test]
+        public void return_two_when_pass_oneandone_string()
+        {
+            int resultStringCalculator = StringCalculator.Add("1,1");
+
+            resultStringCalculator.Should().Be(2, "When Pass Empty String Then Return 0.");
+        }
     }
 }
