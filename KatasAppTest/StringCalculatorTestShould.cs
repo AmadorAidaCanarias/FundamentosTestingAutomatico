@@ -24,6 +24,16 @@ namespace KatasTest.StringCalculatorTest
             resultStringCalculator.Should().Be(0, "When Pass Empty String Then Return 0.");
         }
 
+        [TestCase(1, "1")]
+        [TestCase(2, "2")]
+        [TestCase(3, "3")]
+        public void return_number_representation_from_string(int expected, string value)
+        {
+            int resultStringCalculator = StringCalculator.Add(value);
+
+            resultStringCalculator.Should().Be(expected, $"When Pass { expected } String Then Return { value }.");
+        }
+
         [Test]
         public void return_1_when_pass_1_string()
         {
