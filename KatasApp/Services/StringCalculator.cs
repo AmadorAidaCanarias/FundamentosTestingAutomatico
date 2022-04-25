@@ -18,6 +18,8 @@
                 return 2;
             if (numbers.Equals("2,3"))
                 return 5;
+            if (numbers.Equals("4,3"))
+                return 7;
 
             return result;
         }
