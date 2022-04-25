@@ -14,12 +14,16 @@
                 int.TryParse(numbers, out result);
             }
 
-            if (numbers.Equals("1,1"))
-                return 2;
-            if (numbers.Equals("2,3"))
-                return 5;
-            if (numbers.Equals("4,3"))
-                return 7;
+            if (numbers.Contains(","))
+            {
+                string firstNumber = numbers.Split(",")[0];
+                string secondNumber = numbers.Split(",")[1];
+                int convertFirstNumber;
+                int convertSecondNumber;
+                int.TryParse(firstNumber, out convertFirstNumber);
+                int.TryParse(secondNumber, out convertSecondNumber);
+                result = convertFirstNumber + convertSecondNumber;
+            }
 
             return result;
         }
