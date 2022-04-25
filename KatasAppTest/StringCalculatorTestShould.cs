@@ -46,6 +46,7 @@ namespace KatasTest.StringCalculatorTest
 
         [TestCase(3, "1,1,1")]
         [TestCase(5, "1,1,1,2")]
+        [TestCase(9, "1,1,1,2,4")]
         public void return_add_number_representation_from_three_numbers_string(int expected, string value)
         {
             int resultStringCalculator = StringCalculator.Add(value);
