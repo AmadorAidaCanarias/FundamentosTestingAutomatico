@@ -9,14 +9,10 @@
             if (string.IsNullOrEmpty(numbers))
                 result = 0;
 
-            if(numbers.Equals("1"))
-                result = 1;
-
-            if (numbers.Equals("2"))
-                result = 2;
-
-            if (numbers.Equals("3"))
-                result = 3;
+            if (!numbers.Contains(","))
+            {
+                int.TryParse(numbers, out result);
+            }
 
             return result;
         }
