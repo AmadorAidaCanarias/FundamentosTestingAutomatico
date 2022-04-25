@@ -15,6 +15,8 @@
             if (numbers.Equals("2"))
                 result = 2;
 
+            if (numbers.Equals("3"))
+                result = 3;
 
             return result;
         }
