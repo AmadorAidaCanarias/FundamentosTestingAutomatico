@@ -44,5 +44,13 @@ namespace KatasTest.StringCalculatorTest
             resultStringCalculator.Should().Be(expected, $"When Pass { expected } String Then Return { value }.");
         }
 
+        [TestCase(3, "1,1,1")]
+        public void return_add_number_representation_from_three_numbers_string(int expected, string value)
+        {
+            int resultStringCalculator = StringCalculator.Add(value);
+
+            resultStringCalculator.Should().Be(expected, $"When Pass { expected } String Then Return { value }.");
+        }
+
     }
 }
