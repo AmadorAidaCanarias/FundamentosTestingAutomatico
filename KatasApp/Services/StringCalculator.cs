@@ -2,7 +2,7 @@
 {
     public class StringCalculator
     {
-        public int Add(string numbers)
+        public static int Add(string numbers)
         {
             int result = -1;
 
