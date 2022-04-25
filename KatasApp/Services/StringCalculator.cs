@@ -4,40 +4,15 @@
     {
         public static int Add(string numbers)
         {
-            int result = -1;
-
-            if (string.IsNullOrEmpty(numbers))
-                result = 0;
-
-            if (!numbers.Contains(","))
-            {
-                int.TryParse(numbers, out result);
-            }
+            int.TryParse(numbers, out int result);
 
             if (numbers.Contains(","))
             {
-                if (numbers.Equals("1,1,1"))
-                { 
-                    result = 3;
-                }
-                else if (numbers.Equals("1,1,1,2"))
-                {
-                    result = 5;
-                }
-                else if (numbers.Equals("1,1,1,2,4"))
-                {
-                    result = 9;
-                }
-                else
-                {
-                    string firstNumber = numbers.Split(",")[0];
-                    string secondNumber = numbers.Split(",")[1];
-                    int convertFirstNumber;
-                    int convertSecondNumber;
-                    int.TryParse(firstNumber, out convertFirstNumber);
-                    int.TryParse(secondNumber, out convertSecondNumber);
-                    result = convertFirstNumber + convertSecondNumber;
-                }
+                string [] valuesFromNumbers = numbers.Split(",");
+
+                int.TryParse(valuesFromNumbers[0], out int firstNumber);
+
+                result = firstNumber + Add(String.Join(",", valuesFromNumbers.TakeLast(valuesFromNumbers.Length - 1)));
             }
 
             return result;
