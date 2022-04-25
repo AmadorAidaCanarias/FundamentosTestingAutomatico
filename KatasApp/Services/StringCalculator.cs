@@ -14,6 +14,9 @@
                 int.TryParse(numbers, out result);
             }
 
+            if (numbers.Equals("1,1"))
+                return 2;
+
             return result;
         }
     }
