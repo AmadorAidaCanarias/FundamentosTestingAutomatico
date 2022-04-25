@@ -34,28 +34,15 @@ namespace KatasTest.StringCalculatorTest
             resultStringCalculator.Should().Be(expected, $"When Pass { expected } String Then Return { value }.");
         }
 
-        [Test]
-        public void return_two_when_pass_oneandone_string()
+        [TestCase(2, "1,1")]
+        [TestCase(5, "2,3")]
+        [TestCase(7, "4,3")]
+        public void return_add_number_representation_from_two_numbers_string(int expected, string value)
         {
-            int resultStringCalculator = StringCalculator.Add("1,1");
+            int resultStringCalculator = StringCalculator.Add(value);
 
-            resultStringCalculator.Should().Be(2, "When Pass 1,1 String Then Return 2.");
+            resultStringCalculator.Should().Be(expected, $"When Pass { expected } String Then Return { value }.");
         }
 
-        [Test]
-        public void return_five_when_pass_twoandthree_string()
-        {
-            int resultStringCalculator = StringCalculator.Add("2,3");
-
-            resultStringCalculator.Should().Be(5, "When Pass 2,3 String Then Return 5.");
-        }
-
-        [Test]
-        public void return_seven_when_pass_fourandthree_string()
-        {
-            int resultStringCalculator = StringCalculator.Add("4,3");
-
-            resultStringCalculator.Should().Be(7, "When Pass 4,3 String Then Return 7.");
-        }
     }
 }
