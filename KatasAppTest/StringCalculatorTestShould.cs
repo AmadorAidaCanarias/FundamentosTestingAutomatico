@@ -49,5 +49,13 @@ namespace KatasTest.StringCalculatorTest
 
             resultStringCalculator.Should().Be(5, "When Pass 2,3 String Then Return 5.");
         }
+
+        [Test]
+        public void return_seven_when_pass_fourandthree_string()
+        {
+            int resultStringCalculator = StringCalculator.Add("4,3");
+
+            resultStringCalculator.Should().Be(7, "When Pass 4,3 String Then Return 7.");
+        }
     }
 }
