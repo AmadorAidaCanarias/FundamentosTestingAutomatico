@@ -8,11 +8,9 @@
 
             if (numbers.Contains(","))
             {
-                string [] valuesFromNumbers = numbers.Split(",");
+                int.TryParse(numbers.Split(",").First(), out int firstNumber);
 
-                int.TryParse(valuesFromNumbers[0], out int firstNumber);
-
-                result = firstNumber + Add(String.Join(",", valuesFromNumbers.TakeLast(valuesFromNumbers.Length - 1)));
+                result = firstNumber + Add(String.Join(",", numbers.Split(",").TakeLast(numbers.Split(",").Length - 1)));
             }
 
             return result;
