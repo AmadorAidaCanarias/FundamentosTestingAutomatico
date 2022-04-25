@@ -64,5 +64,15 @@ namespace KatasTest.StringCalculatorTest
             resultStringCalculator.Should().Be(expected, $"When Pass { expected } String Then Return { value }.");
         }
 
+        [TestCase(3, "//;\n1;1;1")]
+        [TestCase(5, "//@\n1@1@1@2")]
+        [TestCase(9, "//-\n1-1-1-2-4")]
+        public void return_add_number_representation_from_n_numbers_string_with_newseparator(int expected, string value)
+        {
+            int resultStringCalculator = StringCalculator.Add(value);
+
+            resultStringCalculator.Should().Be(expected, $"When Pass { expected } String Then Return { value }.");
+        }
+
     }
 }
