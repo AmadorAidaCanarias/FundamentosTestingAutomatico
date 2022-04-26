@@ -74,5 +74,14 @@ namespace KatasTest.StringCalculatorTest
             resultStringCalculator.Should().Be(expected, $"When Pass { expected } String Then Return { value }.");
         }
 
+        [Test]
+        public void return_exception_if_string_contains_negative_numbers()
+        {
+            var resultStringCalculator = StringCalculator.Add("//-\n1-2--3-4-5");
+
+            resultStringCalculator.Should().BeOfType(typeof(Exception), $" { resultStringCalculator} should be a Exception.");
+                
+        }
+
     }
 }

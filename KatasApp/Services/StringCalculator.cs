@@ -12,8 +12,7 @@
                 numbers = numbers.Substring(4);
             }
 
-            if (numbers.Contains("\n"))
-                numbers = numbers.Replace("\n", delimiter.ToString());
+            numbers = numbers.Replace("\n", delimiter.ToString());
 
             int.TryParse(numbers, out int result);
 
