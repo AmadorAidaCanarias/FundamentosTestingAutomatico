@@ -1,8 +1,12 @@
-﻿namespace KatasApp.Services
+﻿using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace KatasApp.Services
 {
     public class StringCalculator
     {
         //  "//;\n1;1;1"
+        //  "//-\n1-2--3-4-5"
         public static int Add(string numbers)
         {
             char delimiter = ',';
@@ -10,6 +14,21 @@
             {
                 delimiter = numbers[2];
                 numbers = numbers.Substring(4);
+
+                string numbersprocess = numbers;
+                if (numbersprocess.Contains($"{delimiter}-"))
+                {
+                    numbersprocess = numbersprocess.Replace($"{delimiter}-", "@");
+                    numbersprocess = numbersprocess.Replace(delimiter, ',');
+                    numbersprocess = numbersprocess.Replace("@", ",-");
+                    var matchNegatives = Regex.Matches(numbersprocess, @"\-\d*");
+                    if (matchNegatives.Count > 0)
+                    {
+                        throw new InvalidOperationException($"Negatives not alowed: " +
+                            $"{string.Join(",", matchNegatives.Select(row => row.Value).ToArray())}"
+                           );
+                    }
+                }
             }
 
             numbers = numbers.Replace("\n", delimiter.ToString());
@@ -20,7 +39,7 @@
             {
                 int.TryParse(numbers.Split(delimiter).First(), out int firstNumber);
 
-                result = firstNumber + Add("//" + delimiter.ToString()+ "\n" + String.Join(delimiter, numbers.Split(delimiter).TakeLast(numbers.Split(delimiter).Length - 1)));
+                result = firstNumber + Add("//" + delimiter.ToString() + "\n" + String.Join(delimiter, numbers.Split(delimiter).TakeLast(numbers.Split(delimiter).Length - 1)));
             }
 
             return result;

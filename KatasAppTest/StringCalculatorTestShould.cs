@@ -77,9 +77,16 @@ namespace KatasTest.StringCalculatorTest
         [Test]
         public void return_exception_if_string_contains_negative_numbers()
         {
-            var resultStringCalculator = StringCalculator.Add("//-\n1-2--3-4-5");
-
-            resultStringCalculator.Should().BeOfType(typeof(Exception), $" { resultStringCalculator} should be a Exception.");
+            try
+            {
+                var resultStringCalculator = StringCalculator.Add("//-\n1-2--3-4-5");
+            }
+            catch(InvalidOperationException ex)
+            {
+                ex.Should().BeOfType(typeof(InvalidOperationException), $" { ex } should be a Exception.");
+                ex.Message.Should().Contain("-3", $"{ ex } should contain -3");
+            }
+            
                 
         }
 
