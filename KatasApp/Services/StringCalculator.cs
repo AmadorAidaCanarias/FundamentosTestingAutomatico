@@ -18,10 +18,11 @@ namespace KatasApp.Services
                 string numbersprocess = numbers;
                 if (numbersprocess.Contains($"{delimiter}-"))
                 {
-                    numbersprocess = numbersprocess.Replace($"{delimiter}-", "@");
-                    numbersprocess = numbersprocess.Replace(delimiter, ',');
-                    numbersprocess = numbersprocess.Replace("@", ",-");
-                    var matchNegatives = Regex.Matches(numbersprocess, @"\-\d*");
+                    var matchNegatives = Regex.Matches(numbersprocess
+                        .Replace($"{delimiter}-", "@")
+                        .Replace(delimiter, ',')
+                        .Replace("@", ",-")
+                        , @"\-\d*");
                     if (matchNegatives.Count > 0)
                     {
                         throw new InvalidOperationException($"Negatives not alowed: " +
