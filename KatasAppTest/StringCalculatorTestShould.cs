@@ -91,8 +91,7 @@ namespace KatasTest.StringCalculatorTest
         [Test]
         public void numbers_greater_than_1000_not_count()
         {
-            
-            var resultStringCalculator = StringCalculator.Add("//-\n1-2-1000-4-5");
+            var resultStringCalculator = StringCalculator.Add("//-\n1-2-1001-4-5");
             resultStringCalculator.Should().Be(12, "Greater than 1000 not count.");
         }
 

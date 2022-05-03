@@ -37,10 +37,10 @@ namespace KatasApp.Services
             {
                 int.TryParse(numbers.Split(delimiter).First(), out int firstNumber);
 
-                result = firstNumber + Add("//" + delimiter.ToString() + "\n" + String.Join(delimiter, numbers.Split(delimiter).TakeLast(numbers.Split(delimiter).Length - 1)));
+                result = (firstNumber > 1000 ? 0 : firstNumber) + Add("//" + delimiter.ToString() + "\n" + String.Join(delimiter, numbers.Split(delimiter).TakeLast(numbers.Split(delimiter).Length - 1)));
             }
 
-            return result;
+            return result > 1000 ? 0 : result;
         }
     }
 }
