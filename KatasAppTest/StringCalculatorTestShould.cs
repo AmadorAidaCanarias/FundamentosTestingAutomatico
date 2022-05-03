@@ -86,8 +86,14 @@ namespace KatasTest.StringCalculatorTest
                 ex.Should().BeOfType(typeof(InvalidOperationException), $" { ex } should be a Exception.");
                 ex.Message.Should().Contain("-3", $"{ ex } should contain -3");
             }
+        }
+
+        [Test]
+        public void numbers_greater_than_1000_not_count()
+        {
             
-                
+            var resultStringCalculator = StringCalculator.Add("//-\n1-2-1000-4-5");
+            resultStringCalculator.Should().Be(12, "Greater than 1000 not count.");
         }
 
     }

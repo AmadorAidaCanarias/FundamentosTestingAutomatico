@@ -4,8 +4,6 @@ namespace KatasApp.Services
 {
     public class StringCalculator
     {
-        //  "//;\n1;1;1"
-        //  "//-\n1-2--3-4-5"
         public static int Add(string numbers)
         {
             char delimiter = ',';
