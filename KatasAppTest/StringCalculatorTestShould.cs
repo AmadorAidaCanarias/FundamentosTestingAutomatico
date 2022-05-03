@@ -99,8 +99,21 @@ namespace KatasTest.StringCalculatorTest
         public void delimiter_with_any_character_return_add_number()
         {
             var resultStringCalculator = StringCalculator.Add("//[***]\n1***2***3");
-            resultStringCalculator.Should().Be(6, "Greater than 1000 not count.");
+            resultStringCalculator.Should().Be(6, "Any delimiter length.");
         }
 
+        [Test]
+        public void delimiter_with_any_character_return_add_number_two()
+        {
+            var resultStringCalculator = StringCalculator.Add("//[---]\n2---3---4");
+            resultStringCalculator.Should().Be(9, "Any delimiter length 2.");
+        }
+
+        [Test]
+        public void delimiter_with_any_character_return_add_number_with_negative()
+        {
+            var resultStringCalculator = StringCalculator.Add("//[---]\n2----3---4");
+            resultStringCalculator.Should().Be(3, "Any delimiter length 2.");
+        }
     }
 }
