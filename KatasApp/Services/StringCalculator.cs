@@ -6,18 +6,29 @@ namespace KatasApp.Services
     {
         public static int Add(string numbers)
         {
-            char delimiter = ',';
+            string delimiter = ",";
             if (numbers.Contains("//"))
             {
-                delimiter = numbers[2];
-                numbers = numbers.Substring(4);
+                if (numbers.Contains("[") && numbers.Contains("]"))
+                {
+                    int indexBegin = numbers.IndexOf("[")+1;
+                    int indexEnd = numbers.IndexOf("]");
+                    delimiter = numbers[indexBegin..indexEnd];
+                    numbers = numbers.Substring(indexEnd + 2);
+                }
+                else
+                {
+                    delimiter = numbers[2].ToString();
+                    numbers = numbers.Substring(4);
+                }
+                
 
                 string numbersprocess = numbers;
                 if (numbersprocess.Contains($"{delimiter}-"))
                 {
                     var matchNegatives = Regex.Matches(numbersprocess
                         .Replace($"{delimiter}-", "@")
-                        .Replace(delimiter, ',')
+                        .Replace(delimiter, ",")
                         .Replace("@", ",-")
                         , @"\-\d*");
                     if (matchNegatives.Count > 0)
@@ -37,7 +48,7 @@ namespace KatasApp.Services
             {
                 int.TryParse(numbers.Split(delimiter).First(), out int firstNumber);
 
-                result = (firstNumber > 1000 ? 0 : firstNumber) + Add("//" + delimiter.ToString() + "\n" + String.Join(delimiter, numbers.Split(delimiter).TakeLast(numbers.Split(delimiter).Length - 1)));
+                result = (firstNumber > 1000 ? 0 : firstNumber) + Add(String.Join(",", numbers.Split(delimiter).TakeLast(numbers.Split(delimiter).Length - 1)));
             }
 
             return result > 1000 ? 0 : result;
