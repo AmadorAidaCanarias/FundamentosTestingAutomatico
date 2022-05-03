@@ -122,5 +122,12 @@ namespace KatasTest.StringCalculatorTest
                 ex.Message.Should().Contain("-3", $"{ ex } should contain -3");
             }
         }
+
+        [Test]
+        public void valid_any_delimiter_number_and_length()
+        {
+            var resultStringCalculator = StringCalculator.Add("//[*][%]\n2*3%4");
+            resultStringCalculator.Should().Be(9, "Any delimiter and any length's delimiter 2.");
+        }
     }
 }
