@@ -95,5 +95,12 @@ namespace KatasTest.StringCalculatorTest
             resultStringCalculator.Should().Be(12, "Greater than 1000 not count.");
         }
 
+        [Test]
+        public void delimiter_with_any_character_return_add_number()
+        {
+            var resultStringCalculator = StringCalculator.Add("//[***]\n1***2***3");
+            resultStringCalculator.Should().Be(6, "Greater than 1000 not count.");
+        }
+
     }
 }
