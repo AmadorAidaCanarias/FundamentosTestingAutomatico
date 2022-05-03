@@ -47,8 +47,8 @@ namespace KatasApp.Services
             if (numbers.Contains(delimiter))
             {
                 int.TryParse(numbers.Split(delimiter).First(), out int firstNumber);
-
-                result = (firstNumber > 1000 ? 0 : firstNumber) + Add(String.Join(",", numbers.Split(delimiter).TakeLast(numbers.Split(delimiter).Length - 1)));
+                string lastNumbers = String.Join(",", numbers.Split(delimiter).TakeLast(numbers.Split(delimiter).Length - 1));
+                result = (firstNumber > 1000 ? 0 : firstNumber) + Add(lastNumbers);
             }
 
             return result > 1000 ? 0 : result;
