@@ -112,8 +112,15 @@ namespace KatasTest.StringCalculatorTest
         [Test]
         public void delimiter_with_any_character_return_add_number_with_negative()
         {
-            var resultStringCalculator = StringCalculator.Add("//[---]\n2----3---4");
-            resultStringCalculator.Should().Be(3, "Any delimiter length 2.");
+            try
+            {
+                var resultStringCalculator = StringCalculator.Add("//[---]\n2----3---4");
+            }
+            catch (InvalidOperationException ex)
+            {
+                ex.Should().BeOfType(typeof(InvalidOperationException), $" { ex } should be a Exception.");
+                ex.Message.Should().Contain("-3", $"{ ex } should contain -3");
+            }
         }
     }
 }
