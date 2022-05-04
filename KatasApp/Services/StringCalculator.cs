@@ -7,19 +7,25 @@ namespace KatasApp.Services
     {
         public static int Add(string numbers)
         {
+            int number, result = 0;
             numbers = SanitizeNumbers(numbers);
             string delimiter = ",";
 
-            int.TryParse(numbers, out int result);
-
+            int.TryParse(numbers, out result);
             if (numbers.Contains(delimiter))
             {
-                int.TryParse(numbers.Split(delimiter).First(), out int firstNumber);
-                string lastNumbers = String.Join(delimiter, numbers.Split(delimiter).TakeLast(numbers.Split(delimiter).Length - 1));
-                result = (firstNumber > 1000 ? 0 : firstNumber) + Add(lastNumbers);
+                numbers.Split(delimiter, StringSplitOptions.RemoveEmptyEntries)
+                    .ToList()
+                    .ForEach(
+                        x => 
+                            {
+                                int.TryParse(x, out number);
+                                result += (number > 1000 ? 0 : number);
+                            }
+                    );
             }
 
-            return result > 1000 ? 0 : result;
+            return result;
         }
 
         private static string SanitizeNumbers(string numbers)
