@@ -126,7 +126,7 @@ namespace KatasTest.StringCalculatorTest
         [Test]
         public void valid_any_delimiter_number_and_length()
         {
-            var resultStringCalculator = StringCalculator.Add("//[*][%][***]\n1*2%3***5");
+            var resultStringCalculator = StringCalculator.Add("//[@][%][***]\n1@2%3***5");
             resultStringCalculator.Should().Be(11, "Any delimiter and any length's delimiter 2.");
         }
     }
