@@ -2,19 +2,17 @@
 {
     public class StringCalculator : DetectNegatives
     {
-        private readonly IProcessDelimiters processDelimiters;
-        private readonly IDetectNegatives detectNegatives;
+        private ICleanInputString cleanInputString;
 
-        public StringCalculator(IProcessDelimiters processDelimiters, IDetectNegatives detectNegatives)
+        public StringCalculator(ICleanInputString cleanInputString)
         {
-            this.processDelimiters = processDelimiters;
-            this.detectNegatives = detectNegatives;
+            this.cleanInputString = cleanInputString;
         }
 
         public int Add(string numbers)
         {
             int number, result = 0;
-            numbers = SanitizeNumbers(numbers);
+            numbers = cleanInputString.SanitizeString(numbers);
             string delimiter = ",";
 
             int.TryParse(numbers, out result);
@@ -32,20 +30,6 @@
             }
 
             return result;
-        }
-
-        private string SanitizeNumbers(string numbers)
-        {
-            string[] arrayDelimiter = new string[] { "," };
-            if (numbers.Contains("//"))
-            {
-                processDelimiters.ExtractDelimiter(ref numbers, ref arrayDelimiter);
-            }
-
-            detectNegatives.Detect(numbers, arrayDelimiter);
-
-            numbers = processDelimiters.ReplaceDelimiters(numbers, arrayDelimiter);
-            return numbers;
         }
     }
 }

@@ -14,12 +14,14 @@ namespace KatasTest.StringCalculatorTest
         private IProcessDelimiters extractDelimiters;
         private StringCalculator _calculator;
         private IDetectNegatives detectNegatives;
+        private ICleanInputString cleanInputString;
         [SetUp]
         public void Setup()
         {
             extractDelimiters = new ProcessDelimiters();
             detectNegatives = new DetectNegatives();
-            _calculator = new StringCalculator(extractDelimiters, detectNegatives);
+            cleanInputString = new CleanInputString(extractDelimiters, detectNegatives);
+            _calculator = new StringCalculator(cleanInputString);
         }
 
         [Test]
