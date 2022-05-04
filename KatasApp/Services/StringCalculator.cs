@@ -5,7 +5,14 @@ namespace KatasApp.Services
 {
     public class StringCalculator
     {
-        public static int Add(string numbers)
+        private readonly IExtractDelimiters extractDelimiters;
+
+        public StringCalculator(IExtractDelimiters extractDelimiters)
+        {
+            this.extractDelimiters = extractDelimiters;
+        }
+
+        public int Add(string numbers)
         {
             int number, result = 0;
             numbers = SanitizeNumbers(numbers);
@@ -28,12 +35,12 @@ namespace KatasApp.Services
             return result;
         }
 
-        private static string SanitizeNumbers(string numbers)
+        private string SanitizeNumbers(string numbers)
         {
             string[] arrayDelimiter = new string[] { "," };
             if (numbers.Contains("//"))
             {
-                ExtractDelimiter(ref numbers, ref arrayDelimiter);
+                extractDelimiters.ExtractDelimiter(ref numbers, ref arrayDelimiter);
             }
 
             DetectNegatives(numbers, arrayDelimiter);
@@ -42,14 +49,14 @@ namespace KatasApp.Services
             return numbers;
         }
 
-        private static string ReplaceDelimiters(string numbers, string[] delimiter)
+        private string ReplaceDelimiters(string numbers, string[] delimiter)
         {
             delimiter.ToList().ForEach(x => numbers = numbers.Replace(x, ","));
             numbers = numbers.Replace("\n", ",");
             return numbers;
         }
 
-        private static void DetectNegatives(string numbers, string[] delimiter)
+        private void DetectNegatives(string numbers, string[] delimiter)
         {
             string numbersprocess = numbers;
             bool withNegatives = false;
@@ -67,25 +74,6 @@ namespace KatasApp.Services
                         $"{string.Join(",", matchNegatives.Select(row => row.Value).ToArray())}"
                        );
                 }
-            }
-        }
-
-        private static void ExtractDelimiter(ref string numbers, ref string[] delimiter)
-        {
-            if (numbers.Contains("[") && numbers.Contains("]"))
-            {
-                while (numbers.Contains("["))
-                {
-                    int indexBegin = numbers.IndexOf("[") + 1;
-                    int indexEnd = numbers.IndexOf("]");
-                    delimiter = delimiter.Concat(new string[] { numbers[indexBegin..indexEnd] }).ToArray();
-                    numbers = numbers.Substring(indexEnd + 1);
-                }
-            }
-            else
-            {
-                delimiter = delimiter.Concat(new string[] { numbers[2].ToString() }).ToArray();
-                numbers = numbers.Substring(4);
             }
         }
     }
