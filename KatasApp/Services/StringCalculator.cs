@@ -3,13 +3,15 @@ using System.Text.RegularExpressions;
 
 namespace KatasApp.Services
 {
-    public class StringCalculator
+    public class StringCalculator : DetectNegatives
     {
         private readonly IExtractDelimiters extractDelimiters;
+        private readonly IDetectNegatives detectNegatives;
 
-        public StringCalculator(IExtractDelimiters extractDelimiters)
+        public StringCalculator(IExtractDelimiters extractDelimiters, IDetectNegatives detectNegatives)
         {
             this.extractDelimiters = extractDelimiters;
+            this.detectNegatives = detectNegatives;
         }
 
         public int Add(string numbers)
@@ -43,7 +45,7 @@ namespace KatasApp.Services
                 extractDelimiters.ExtractDelimiter(ref numbers, ref arrayDelimiter);
             }
 
-            DetectNegatives(numbers, arrayDelimiter);
+            detectNegatives.Detect(numbers, arrayDelimiter);
 
             numbers = ReplaceDelimiters(numbers, arrayDelimiter);
             return numbers;
@@ -54,27 +56,6 @@ namespace KatasApp.Services
             delimiter.ToList().ForEach(x => numbers = numbers.Replace(x, ","));
             numbers = numbers.Replace("\n", ",");
             return numbers;
-        }
-
-        private void DetectNegatives(string numbers, string[] delimiter)
-        {
-            string numbersprocess = numbers;
-            bool withNegatives = false;
-            delimiter.ToList().ForEach(x => withNegatives = withNegatives == false ? numbersprocess.Contains($"{x}-") : withNegatives);
-            if (withNegatives)
-            {
-                delimiter.ToList().ForEach(x => numbersprocess = numbersprocess
-                                                                    .Replace($"{x}-", "@")
-                                                                    .Replace(x, ",")
-                                                                    .Replace("@", ",-"));
-                var matchNegatives = Regex.Matches(numbersprocess, @"\-\d*");
-                if (matchNegatives.Count > 0)
-                {
-                    throw new InvalidOperationException($"Negatives not alowed: " +
-                        $"{string.Join(",", matchNegatives.Select(row => row.Value).ToArray())}"
-                       );
-                }
-            }
         }
     }
 }

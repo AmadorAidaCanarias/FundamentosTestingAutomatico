@@ -13,11 +13,13 @@ namespace KatasTest.StringCalculatorTest
     {
         private IExtractDelimiters extractDelimiters;
         private StringCalculator _calculator;
+        private IDetectNegatives detectNegatives;
         [SetUp]
         public void Setup()
         {
             extractDelimiters = new ExtractDelimiters();
-            _calculator = new StringCalculator(extractDelimiters);
+            detectNegatives = new DetectNegatives();
+            _calculator = new StringCalculator(extractDelimiters, detectNegatives);
         }
 
         [Test]
