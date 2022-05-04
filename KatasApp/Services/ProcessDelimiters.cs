@@ -1,11 +1,12 @@
 ﻿namespace KatasApp.Services
 {
-    public interface IExtractDelimiters
+    public interface IProcessDelimiters
     {
         public void ExtractDelimiter(ref string numbers, ref string[] delimiter);
+        public string ReplaceDelimiters(string numbers, string[] delimiter);
     }
 
-    public class ExtractDelimiters: IExtractDelimiters
+    public class ProcessDelimiters: IProcessDelimiters
     {
         public void ExtractDelimiter(ref string numbers, ref string[] delimiter)
         {
@@ -24,6 +25,13 @@
                 delimiter = delimiter.Concat(new string[] { numbers[2].ToString() }).ToArray();
                 numbers = numbers.Substring(4);
             }
+        }
+
+        public string ReplaceDelimiters(string numbers, string[] delimiter)
+        {
+            delimiter.ToList().ForEach(x => numbers = numbers.Replace(x, ","));
+            numbers = numbers.Replace("\n", ",");
+            return numbers;
         }
     }
 }

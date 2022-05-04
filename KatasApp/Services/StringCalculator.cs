@@ -1,16 +1,13 @@
-﻿using System.Linq;
-using System.Text.RegularExpressions;
-
-namespace KatasApp.Services
+﻿namespace KatasApp.Services
 {
     public class StringCalculator : DetectNegatives
     {
-        private readonly IExtractDelimiters extractDelimiters;
+        private readonly IProcessDelimiters processDelimiters;
         private readonly IDetectNegatives detectNegatives;
 
-        public StringCalculator(IExtractDelimiters extractDelimiters, IDetectNegatives detectNegatives)
+        public StringCalculator(IProcessDelimiters processDelimiters, IDetectNegatives detectNegatives)
         {
-            this.extractDelimiters = extractDelimiters;
+            this.processDelimiters = processDelimiters;
             this.detectNegatives = detectNegatives;
         }
 
@@ -42,19 +39,12 @@ namespace KatasApp.Services
             string[] arrayDelimiter = new string[] { "," };
             if (numbers.Contains("//"))
             {
-                extractDelimiters.ExtractDelimiter(ref numbers, ref arrayDelimiter);
+                processDelimiters.ExtractDelimiter(ref numbers, ref arrayDelimiter);
             }
 
             detectNegatives.Detect(numbers, arrayDelimiter);
 
-            numbers = ReplaceDelimiters(numbers, arrayDelimiter);
-            return numbers;
-        }
-
-        private string ReplaceDelimiters(string numbers, string[] delimiter)
-        {
-            delimiter.ToList().ForEach(x => numbers = numbers.Replace(x, ","));
-            numbers = numbers.Replace("\n", ",");
+            numbers = processDelimiters.ReplaceDelimiters(numbers, arrayDelimiter);
             return numbers;
         }
     }
