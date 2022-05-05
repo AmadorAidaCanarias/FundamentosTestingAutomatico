@@ -4,7 +4,7 @@
     {
         public string[] GetAnagramas(string word)
         {
-            return new string[] { word };
+            return null;
         }
     }
 }
