@@ -10,7 +10,9 @@ namespace KatasApp.Services
     {
         public int Factorial(int numberToCalculateFactorial)
         {
-            return 1;
+            if (numberToCalculateFactorial == 0)
+                return 1;
+            return 0;
         }
     }
 }
