@@ -31,5 +31,12 @@ namespace KatasTest
             var result = this.factorialService.Factorial(1);
             Assert.AreEqual(1, result);
         }
+
+        [Test]
+        public void should_return_2_when_factorial_is_2()
+        {
+            var result = this.factorialService.Factorial(2);
+            Assert.AreEqual(2, result);
+        }
     }
 }
