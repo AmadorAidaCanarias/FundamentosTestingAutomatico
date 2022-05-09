@@ -12,7 +12,7 @@ namespace KatasApp.Services
         {
             if (numberToCalculateFactorial <= 1)
                 return 1;
-            return 0;
+            return 2;
         }
     }
 }
