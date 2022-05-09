@@ -10,7 +10,7 @@ namespace KatasApp.Services
     {
         public int Factorial(int numberToCalculateFactorial)
         {
-            throw new NotImplementedException();
+            return 1;
         }
     }
 }
