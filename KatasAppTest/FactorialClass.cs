@@ -51,5 +51,12 @@ namespace KatasTest
                 Assert.IsInstanceOf<Exception>(ex);
             }
         }
+
+        [Test]
+        public void should_return_6_when_factorial_is_3()
+        {
+            var result = this.factorialService.Factorial(3);
+            Assert.AreEqual(6, result);
+        }
     }
 }
