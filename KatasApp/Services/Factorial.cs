@@ -10,6 +10,10 @@ namespace KatasApp.Services
     {
         public int Factorial(int numberToCalculateFactorial)
         {
+            if (numberToCalculateFactorial < 0)
+            {
+                throw new Exception("No se permiten números negativos");
+            }
             if (numberToCalculateFactorial <= 1)
                 return 1;
             return 2;
