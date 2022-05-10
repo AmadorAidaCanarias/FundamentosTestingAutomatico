@@ -58,5 +58,12 @@ namespace KatasTest
             var result = this.factorialService.Factorial(3);
             Assert.AreEqual(6, result);
         }
+
+        [Test]
+        public void should_return_24_when_factorial_is_4()
+        {
+            var result = this.factorialService.Factorial(4);
+            Assert.AreEqual(24, result);
+        }
     }
 }
