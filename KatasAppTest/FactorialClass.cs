@@ -38,5 +38,12 @@ namespace KatasTest
             var result = this.factorialService.Factorial(2);
             Assert.AreEqual(2, result);
         }
+
+        [Test]
+        public void should_return_negative_exception_when_factorial_is_negative()
+        {
+            var result = this.factorialService.Factorial(-1);
+            Assert.IsInstanceOf<Exception>(result);
+        }
     }
 }
