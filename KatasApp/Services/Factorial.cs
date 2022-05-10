@@ -17,11 +17,6 @@ namespace KatasApp.Services
             if (numberToCalculateFactorial <= 1)
                 return 1;
             return numberToCalculateFactorial * Factorial(numberToCalculateFactorial - 1);
-            if (numberToCalculateFactorial == 3)
-                return 6;
-            if (numberToCalculateFactorial == 4)
-                return 24;
-            return 2;
         }
     }
 }
