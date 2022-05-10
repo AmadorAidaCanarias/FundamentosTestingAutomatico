@@ -14,7 +14,7 @@ namespace KatasApp.Services
             {
                 throw new Exception("No se permiten números negativos");
             }
-            if (numberToCalculateFactorial <= 1)
+            if (numberToCalculateFactorial == 0)
                 return 1;
             return numberToCalculateFactorial * Factorial(numberToCalculateFactorial - 1);
         }
