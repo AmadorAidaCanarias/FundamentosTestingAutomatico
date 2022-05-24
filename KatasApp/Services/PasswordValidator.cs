@@ -17,7 +17,7 @@
         }
         public PasswordResultValidator Validate(string password)
         {
-            if (password == "1234567" || password == "234567" || password == "abcedef") {
+            if (password.Length < 8) {
                 _resultValidator.IsValid = false;
                 _resultValidator.Messages.Add("La contraseña debe tener al menos 8 caracteres.");
             }
