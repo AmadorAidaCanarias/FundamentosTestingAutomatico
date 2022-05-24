@@ -19,6 +19,7 @@ namespace KatasTest.PasswordKataTest {
         [Test]
         [TestCase( "1234567", false, "La contraseña debe tener al menos 8 caracteres.")]
         [TestCase("234567", false, "La contraseña debe tener al menos 8 caracteres.")]
+        [TestCase("abcedef", false, "La contraseña debe tener al menos 8 caracteres.")]
         public void when_pass_password_with_length_minor_8_should_return_false_validation_and_message(string password, bool expectedValid, string expectedMessage)
         {
             PasswordResultValidator resultValidator = passwordValidator.Validate(password);
