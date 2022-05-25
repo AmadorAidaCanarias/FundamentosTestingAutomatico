@@ -46,5 +46,21 @@ namespace KatasTest.PasswordKataTest {
                 .Should()
                 .BeTrue();
         }
+
+        [Test]
+        public void when_send_password_with_length_minor_8_and_without_two_numbers_return_false_with_two_messages() {
+            PasswordResultValidator resultValidator = passwordValidator.Validate("asdf2");
+
+            resultValidator.IsValid.Should().Be(false);
+            resultValidator.Messages.Count.Should().Be(2);
+            resultValidator.Messages
+                .Any(x => x.Equals("La contraseña debe tener al menos dos números."))
+                .Should()
+                .BeTrue();
+            resultValidator.Messages
+                .Any(x => x.Equals("La contraseña debe tener al menos 8 caracteres."))
+                .Should()
+                .BeTrue();
+        }
     }
 }
