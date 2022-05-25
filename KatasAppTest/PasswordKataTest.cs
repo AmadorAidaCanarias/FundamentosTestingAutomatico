@@ -52,7 +52,7 @@ namespace KatasTest.PasswordKataTest {
             PasswordResultValidator resultValidator = passwordValidator.Validate("asdf2");
 
             resultValidator.IsValid.Should().Be(false);
-            resultValidator.Messages.Count.Should().Be(2);
+            resultValidator.Messages.Count.Should().BeGreaterThanOrEqualTo(2);
             resultValidator.Messages
                 .Any(x => x.Equals("La contraseña debe tener al menos dos números."))
                 .Should()
@@ -68,6 +68,21 @@ namespace KatasTest.PasswordKataTest {
         [TestCase("abcdefg1", false, "La contraseña debe contener al menos una letra mayúscula.")]
         [TestCase("1abcdefg", false, "La contraseña debe contener al menos una letra mayúscula.")]
         public void when_send_password_without_upper_letter_should_return_false_and_message(string password, bool expectedValid, string expectedMessage) {
+            PasswordResultValidator resultValidator = passwordValidator.Validate(password);
+
+            resultValidator.IsValid.Should().Be(expectedValid);
+            resultValidator.Messages.Count.Should().BeGreaterThanOrEqualTo(1);
+            resultValidator.Messages
+                .Any(x => x.Equals(expectedMessage))
+                .Should()
+                .BeTrue();
+        }
+
+        [Test]
+        [TestCase("abca1efgh", false, "La contraseña debe contener al menos un carácter especial.")]
+        [TestCase("abcdefg1", false, "La contraseña debe contener al menos un carácter especial.")]
+        [TestCase("1abcdefg", false, "La contraseña debe contener al menos un carácter especial.")]
+        public void when_send_password_without_special_character_should_return_false_and_message(string password, bool expectedValid, string expectedMessage) {
             PasswordResultValidator resultValidator = passwordValidator.Validate(password);
 
             resultValidator.IsValid.Should().Be(expectedValid);
