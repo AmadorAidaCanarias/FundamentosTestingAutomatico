@@ -92,5 +92,16 @@ namespace KatasTest.PasswordKataTest {
                 .Should()
                 .BeTrue();
         }
+
+        [Test]
+        [TestCase("A1d0e@ss", true)]
+        [TestCase("BE23eg€e", true)]
+        [TestCase("GB09pes@", true)]
+        public void when_send_correct_password_should_be_valid(string password, bool expectedValid, string expectedMessage) {
+            PasswordResultValidator resultValidator = passwordValidator.Validate(password);
+
+            resultValidator.IsValid.Should().Be(expectedValid);
+            resultValidator.Messages.Count.Should().Be(0);
+        }
     }
 }
