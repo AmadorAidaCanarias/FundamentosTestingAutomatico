@@ -21,6 +21,10 @@
                 _resultValidator.IsValid = false;
                 _resultValidator.Messages.Add("La contraseña debe tener al menos 8 caracteres.");
             }
+            if (password == "abca1efgh" || password == "abcdefg1" || password == "1abcdefg") {
+                _resultValidator.IsValid = false;
+                _resultValidator.Messages.Add("La contraseña debe tener al menos dos números.");
+            }
             return _resultValidator;
         }
     }
