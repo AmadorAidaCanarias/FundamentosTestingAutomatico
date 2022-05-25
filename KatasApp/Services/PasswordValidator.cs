@@ -1,4 +1,6 @@
-﻿namespace KatasApp.Services {
+﻿using System.Text.RegularExpressions;
+
+namespace KatasApp.Services {
     public class PasswordResultValidator {
         public PasswordResultValidator()
         {
@@ -21,7 +23,8 @@
                 _resultValidator.IsValid = false;
                 _resultValidator.Messages.Add("La contraseña debe tener al menos 8 caracteres.");
             }
-            if (password == "abca1efgh" || password == "abcdefg1" || password == "1abcdefg") {
+            var matchNegatives = Regex.Matches(password, @"\d");
+            if (matchNegatives.Count < 2) {
                 _resultValidator.IsValid = false;
                 _resultValidator.Messages.Add("La contraseña debe tener al menos dos números.");
             }
