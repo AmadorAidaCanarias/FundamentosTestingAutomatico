@@ -64,13 +64,16 @@ namespace KatasTest.PasswordKataTest {
         }
 
         [Test]
-        public void when_send_password_without_upper_letter_should_return_false_and_message() {
-            PasswordResultValidator resultValidator = passwordValidator.Validate("asdf2");
+        [TestCase("abca1efgh", false, "La contraseña debe contener al menos una letra mayúscula.")]
+        [TestCase("abcdefg1", false, "La contraseña debe contener al menos una letra mayúscula.")]
+        [TestCase("1abcdefg", false, "La contraseña debe contener al menos una letra mayúscula.")]
+        public void when_send_password_without_upper_letter_should_return_false_and_message(string password, bool expectedValid, string expectedMessage) {
+            PasswordResultValidator resultValidator = passwordValidator.Validate(password);
 
-            resultValidator.IsValid.Should().Be(false);
+            resultValidator.IsValid.Should().Be(expectedValid);
             resultValidator.Messages.Count.Should().BeGreaterThanOrEqualTo(1);
             resultValidator.Messages
-                .Any(x => x.Equals("La contraseña debe contener al menos una letra mayúscula."))
+                .Any(x => x.Equals(expectedMessage))
                 .Should()
                 .BeTrue();
         }
