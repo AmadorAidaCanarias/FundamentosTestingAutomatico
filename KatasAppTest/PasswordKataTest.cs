@@ -20,7 +20,7 @@ namespace KatasTest.PasswordKataTest {
         [TestCase( "1234567", false, "La contraseña debe tener al menos 8 caracteres.")]
         [TestCase("234567", false, "La contraseña debe tener al menos 8 caracteres.")]
         [TestCase("abcedef", false, "La contraseña debe tener al menos 8 caracteres.")]
-        public void when_pass_password_with_length_minor_8_should_return_false_validation_and_message(string password, bool expectedValid, string expectedMessage)
+        public void when_send_password_with_length_minor_8_should_return_false_validation_and_message(string password, bool expectedValid, string expectedMessage)
         {
             PasswordResultValidator resultValidator = passwordValidator.Validate(password);
 
@@ -32,5 +32,19 @@ namespace KatasTest.PasswordKataTest {
                 .BeTrue();
         }
 
+        [Test]
+        [TestCase("abca1efgh", false, "La contraseña debe tener al menos dos números.")]
+        [TestCase("abcdefg1", false, "La contraseña debe tener al menos dos números.")]
+        [TestCase("1abcdefg", false, "La contraseña debe tener al menos dos números.")]
+        public void when_send_password_without_two_numbers_should_return_false_validation_and_message(string password, bool expectedValid, string expectedMessage) {
+            PasswordResultValidator resultValidator = passwordValidator.Validate(password);
+
+            resultValidator.IsValid.Should().Be(expectedValid);
+            resultValidator.Messages.Count.Should().BeGreaterThanOrEqualTo(1);
+            resultValidator.Messages
+                .Any(x => x.Equals(expectedMessage))
+                .Should()
+                .BeTrue();
+        }
     }
 }
