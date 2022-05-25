@@ -4,7 +4,7 @@ namespace KatasApp.Services {
     public class PasswordResultValidator {
         public PasswordResultValidator()
         {
-            IsValid = false;
+            IsValid = true;
             Messages = new List<string>();
         }
 
