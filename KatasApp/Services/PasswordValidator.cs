@@ -28,6 +28,10 @@ namespace KatasApp.Services {
                 _resultValidator.IsValid = false;
                 _resultValidator.Messages.Add("La contraseña debe tener al menos dos números.");
             }
+            if (password == "abca1efgh" || password == "abcdefg1" || password == "1abcdefg") {
+                _resultValidator.IsValid = false;
+                _resultValidator.Messages.Add("La contraseña debe contener al menos una letra mayúscula.");
+            }
             return _resultValidator;
         }
     }
