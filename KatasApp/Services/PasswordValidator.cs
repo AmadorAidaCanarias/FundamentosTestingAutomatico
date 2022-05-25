@@ -33,7 +33,7 @@ namespace KatasApp.Services {
                 _resultValidator.IsValid = false;
                 _resultValidator.Messages.Add("La contraseña debe contener al menos una letra mayúscula.");
             }
-            var matchSpecial = Regex.Matches(password, "^[^<>{}\"/|;:.,~!?@#$%^=&*\\]\\\\()\\[¿§«»ω⊙¤°℃℉€¥£¢¡®©0-9_+]*$");
+            var matchSpecial = Regex.Matches(password, @"[^0-9a-zA-Z]+");
             if (matchSpecial.Count == 0) {
                 _resultValidator.IsValid = false;
                 _resultValidator.Messages.Add("La contraseña debe contener al menos un carácter especial.");
