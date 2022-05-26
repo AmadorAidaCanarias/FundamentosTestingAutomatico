@@ -4,13 +4,9 @@ public class LengthValidation : Validation {
 
     private readonly string message = "La contraseña debe tener al menos 8 caracteres.";
 
-    public bool Validate(string input, ref List<string> messages) {
-        bool isValid = true;
+    public void Validate(string input, ref List<string> messages) {
         if (input.Length < 8) {
             messages.Add(message);
-            isValid = false;
         }
-
-        return isValid;
     }
 }
