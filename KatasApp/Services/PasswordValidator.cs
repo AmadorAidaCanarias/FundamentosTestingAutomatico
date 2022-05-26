@@ -10,11 +10,8 @@ namespace KatasApp.Services {
         }
         public PasswordResultValidator Validate(string password)
         {
-            List<string> messages = new List<string>();
-            validations.ForEach(validation =>
-            {
-                validation.Validate(password, ref messages);
-            });
+            List<string> messages = new();
+            validations.ForEach(validation => validation.Validate(password, ref messages));
 
             _resultValidator.IsValid = (messages.Count == 0);
             _resultValidator.Messages.AddRange(messages);
