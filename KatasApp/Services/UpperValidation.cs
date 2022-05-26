@@ -2,14 +2,14 @@
 
 namespace KatasApp.Services;
 
-public class NumberValidation : Validation {
-    private readonly string message = "La contraseña debe tener al menos dos números.";
+public class UpperValidation : Validation {
+    private readonly string message = "La contraseña debe contener al menos una letra mayúscula.";
 
     public bool Validate(string input, ref List<string> messages) {
         bool isValid = true;
-        if (Regex.Matches(input, @"\d").Count < 2) {
-            isValid = false;
+        if (Regex.Matches(input, @"[A-Z]").Count == 0) {
             messages.Add(message);
+            isValid = false;
         }
         return isValid;
     }
