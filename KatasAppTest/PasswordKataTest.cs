@@ -12,7 +12,12 @@ namespace KatasTest.PasswordKataTest {
         [SetUp]
         public void Setup()
         {
-            passwordValidator = new PasswordValidator();
+            List<Validation> validations = new List<Validation>();
+            validations.Add(new LengthValidation());
+            validations.Add(new NumberValidation());
+            validations.Add(new UpperValidation());
+            validations.Add(new SpecialValidation());
+            passwordValidator = new PasswordValidator(validations);
         }
 
 

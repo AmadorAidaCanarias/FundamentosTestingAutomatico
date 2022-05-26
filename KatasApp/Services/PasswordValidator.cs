@@ -3,8 +3,10 @@
 namespace KatasApp.Services {
     public class PasswordValidator {
         private readonly PasswordResultValidator _resultValidator;
-        public PasswordValidator() {
+        private readonly List<Validation> validations;
+        public PasswordValidator(List<Validation> validations) {
             _resultValidator = new PasswordResultValidator();
+            this.validations = validations;
         }
         public PasswordResultValidator Validate(string password)
         {
